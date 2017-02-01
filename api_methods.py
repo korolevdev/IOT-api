@@ -16,3 +16,17 @@ def db_decorator(func):
         return res
 
     return f
+
+@db_decorator
+def energy_list(db, cursor, id):
+    cursor.execute("""select ts, wh_total
+                    from energy
+                    where device_id = %s""",
+                    (id, ))
+
+    if cursor.rowcount == 0:
+        return None
+
+    fdata = cursor.fetchone()
+
+    return rows_to_dict(fdata, cursor.description)
