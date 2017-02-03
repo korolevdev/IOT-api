@@ -6,7 +6,7 @@ from utils import *
 from api_methods import *
 
 @app.route('/energy/list/', methods=['GET'])
-def url_energy_details():
+def url_energy_list():
     id = request.args.get('id')
 
     fdata = forum_data(id)
