@@ -9,8 +9,4 @@ from api_methods import *
 def url_energy_list():
     id = request.args.get('id')
 
-    fdata = forum_data(id)
-    if fdata:
-        return response_wrap(fdata)
-    else:
-        return response_not_found("Id %s doesn't exist" % forum)
+    response_wrap(id)
