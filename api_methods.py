@@ -18,6 +18,17 @@ def db_decorator(func):
     return f
 
 @db_decorator
+def status(db, cursor):
+    res = {}
+
+    for table in ['energy']:
+        cursor.execute('select count(*) from energy' % table)
+        row = cursor.fetchone()
+        res[table] = row[0]
+
+    return res
+
+@db_decorator
 def energy_list(db, cursor, id):
     cursor.execute("""select ts, wh_total
                     from energy
