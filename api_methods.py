@@ -21,16 +21,11 @@ def db_decorator(func):
 def status(db, cursor):
     res = {}
 
-    print(1)
     for table in ['energy']:
-        print(1)
         cursor.execute('select count(*) from %s' % table)
-        print(1)
         row = cursor.fetchone()
-        print(1)
         res[table] = row[0]
-
-    print(1)
+        
     return res
 
 @db_decorator
