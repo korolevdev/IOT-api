@@ -12,5 +12,21 @@ def contain_vals(vals, enum=[]):
             return False
     return True
 
+def rows_to_dict(rows, description, remove=[]):
+    res = {}
+    for key, val in enumerate(rows):
+        field = description[key][0]
+
+        if field[0:2] == 'is':
+            val = bool(val)
+        if field == 'date':
+            val = date_string(val)
+        if field in remove:
+            continue
+
+        res[field] = val
+
+    return res
+
 def enumeration(values):
     return ','.join(map(lambda x: '"' + str(x) + '"', values))

@@ -13,5 +13,5 @@ def url_status():
 @app.route('/energy/list/', methods=['GET'])
 def url_energy_list():
     id = request.args.get('id')
-
-    response_wrap(id)
+    response = energy_list(id)
+    return response_wrap(response)

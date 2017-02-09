@@ -25,19 +25,19 @@ def status(db, cursor):
         cursor.execute('select count(*) from %s' % table)
         row = cursor.fetchone()
         res[table] = row[0]
-        
+
     return res
 
 @db_decorator
 def energy_list(db, cursor, id):
     cursor.execute("""select ts, wh_total
                     from energy
-                    where device_id = %s""",
+                    where detail_id = %s""",
                     (id, ))
 
     if cursor.rowcount == 0:
         return None
 
     fdata = cursor.fetchone()
-
+    
     return rows_to_dict(fdata, cursor.description)
